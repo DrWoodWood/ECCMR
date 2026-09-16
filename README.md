@@ -41,7 +41,7 @@ remotes::install_local("DrWoodWood/ECCMR")          # path to the package direct
 or the repository is on GitHub:
 
 ```r
-remotes::install_github(""DrWoodWood/ECCMR"")
+remotes::install_github("DrWoodWood/ECCMR")
 ```
 
 The only hard dependency besides base R is the recommended package
