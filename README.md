@@ -124,4 +124,4 @@ Jiang J, et al. *ECC-MR: an error-correcting-code framework for robust Mendelian
 
 ## License
 
-MIT © Mu-BioDig Group
+MIT © Zenan Lin and Mu-BioDig Group
