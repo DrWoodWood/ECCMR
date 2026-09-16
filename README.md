@@ -38,7 +38,7 @@ From a local copy of this directory:
 remotes::install_local("DrWoodWood/ECCMR")          # path to the package directory
 ```
 
-or, once the repository is on GitHub:
+or the repository is on GitHub:
 
 ```r
 remotes::install_github(""DrWoodWood/ECCMR"")
