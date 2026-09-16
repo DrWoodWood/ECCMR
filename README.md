@@ -35,13 +35,13 @@ From a local copy of this directory:
 
 ```r
 # install.packages("remotes")
-remotes::install_local("eccmr")          # path to the package directory
+remotes::install_local("ECCMR")          # path to the package directory
 ```
 
 or, once the repository is on GitHub:
 
 ```r
-remotes::install_github("<your-account>/eccmr")
+remotes::install_github("DrWoodWood/ECCMR")
 ```
 
 The only hard dependency besides base R is the recommended package
