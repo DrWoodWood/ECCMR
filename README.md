@@ -2,7 +2,8 @@
 
 `eccmr` implements **ECC-MR**, an error-correcting code inspired framework
 for robust Mendelian randomization with GWAS summary statistics.
-[ECC-MR Graphical Abstract-JH（1）（1）.pdf](https://github.com/user-attachments/files/32516289/ECC-MR.Graphical.Abstract-JH.1.1.pdf)
+<img width="7680" height="4320" alt="ECC-MR Graphical Abstract-JH（1）（1）_01(1)" src="https://github.com/user-attachments/assets/b63a2403-f12d-408d-91eb-0336d66acb2a" />
+
 Framework of ECCMR
 
 **Core idea.** Horizontal pleiotropy is treated as *sparse, correctable
