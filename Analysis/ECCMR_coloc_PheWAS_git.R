@@ -114,6 +114,22 @@ run_phewas_decoded <- function(res, pval = 5e-8, batch = c("ieu-b","ebi-a","finn
   out
 }
 
+## universal biological-domain classifier for PheWAS traits
+classify_trait <- function(tr) {
+  tr <- tolower(tr)
+  ifelse(grepl("glucose|a1c|glycated|glycaemi|glycemi|hba1c|diabetes|insulin|medication|sugar", tr),
+         "Glycaemic",
+         ifelse(grepl("mass index|weight|body fat|waist|hip|metabolic rate|lean mass|height|mineral density|adiposity|obesity|overweight|anthropometric|fat percentage|trunk fat|arm fat|leg fat|whole body", tr),
+                "Adiposity",
+                ifelse(grepl("cholesterol|cholesteryl|\\bldl\\b|\\bhdl\\b|triglycer|lipid|lipoprotein|apolipoprotein|apob|apoa|statin|remnant|phospholipid", tr),
+                       "Lipid",
+                       ifelse(grepl("blood pressure|systolic|diastolic|hypertension|pulse|arterial pressure", tr),
+                              "Blood pressure",
+                              ifelse(grepl("platelet|white blood|red blood|lymphocyte|neutrophil|monocyte|eosinophil|basophil|haematocrit|hematocrit|cell count|corpuscular|haemoglobin|hemoglobin|reticulocyte", tr),
+                                     "Haematologic",
+                                     ifelse(grepl("coronary|heart|cardiovascular|angina|myocardial|vascular|stroke|artery|arterial disease|atherosclero|ischaemi|ischemi|atrial", tr),
+                                            "Cardiovascular", "Other"))))))
+}
 ## ------------------------------------------------------------------
 ## 3. PheWAS heatmap (supplementary-material quality; size adapts to content)
 ##    rows = traits (top by frequency), columns = decoded SNPs (rsid, grouped by locus),
@@ -350,6 +366,7 @@ print(coloc_bmi[, c("locus","chr","n_decoded","PP.H3","PP.H4","verdict")])
 
 ## --- PheWAS ---
 ph_bmi <- run_phewas_decoded(res_bmi, pval = 5e-8)
+ph_bmi$domain <- classify_trait(ph_bmi$trait) 
 write.csv(ph_bmi, "phewas_BMI_T2D_decoded_snps.csv", row.names = FALSE)
 
 ## --- locus gene annotation ---
@@ -374,6 +391,7 @@ print(coloc_ldl[, c("locus","chr","n_decoded","PP.H3","PP.H4","verdict")])
 
 ## --- PheWAS ---
 ph_ldl <- run_phewas_decoded(res_ldl, pval = 5e-8)
+ph_ldl$domain <- classify_trait(ph_ldl$trait) 
 write.csv(ph_ldl, "phewas_LDL_CAD_decoded_snps.csv", row.names = FALSE)
 
 ## --- heatmap ---
@@ -654,4 +672,5 @@ BiocManager::install("biomaRt")
                       exp_name = "BMI", out_name = "T2D",
                       out_pdf = sprintf("Fig_coloc_BMI_T2D_locus%s.pdf", tag))
  }
+  
   
